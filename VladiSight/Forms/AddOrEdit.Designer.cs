@@ -52,8 +52,8 @@
             this.BusStopTextBox = new System.Windows.Forms.TextBox();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.PictureBox = new System.Windows.Forms.PictureBox();
-            this.AddPictureButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.AddPictureButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,6 +164,7 @@
             // 
             // dateTimePicker
             // 
+            this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Location = new System.Drawing.Point(385, 230);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(249, 20);
@@ -324,18 +325,21 @@
             this.PictureBox.TabIndex = 26;
             this.PictureBox.TabStop = false;
             // 
-            // AddPictureButton
-            // 
-            this.AddPictureButton.Location = new System.Drawing.Point(55, 243);
-            this.AddPictureButton.Name = "AddPictureButton";
-            this.AddPictureButton.Size = new System.Drawing.Size(150, 36);
-            this.AddPictureButton.TabIndex = 27;
-            this.AddPictureButton.Text = "Добавить изображение";
-            this.AddPictureButton.UseVisualStyleBackColor = true;
-            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // AddPictureButton
+            // 
+            this.AddPictureButton.BackColor = System.Drawing.Color.Khaki;
+            this.AddPictureButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.AddPictureButton.Location = new System.Drawing.Point(55, 243);
+            this.AddPictureButton.Name = "AddPictureButton";
+            this.AddPictureButton.Size = new System.Drawing.Size(150, 21);
+            this.AddPictureButton.TabIndex = 27;
+            this.AddPictureButton.Text = "Добавить изображение";
+            this.AddPictureButton.UseVisualStyleBackColor = false;
+            this.AddPictureButton.Click += new System.EventHandler(this.AddPictureButton_Click);
             // 
             // AddOrEdit
             // 
@@ -403,7 +407,7 @@
         private System.Windows.Forms.TextBox BusStopTextBox;
         private System.Windows.Forms.ComboBox StatusComboBox;
         private System.Windows.Forms.PictureBox PictureBox;
-        private System.Windows.Forms.Button AddPictureButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button AddPictureButton;
     }
 }

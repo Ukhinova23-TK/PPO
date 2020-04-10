@@ -22,6 +22,8 @@ namespace VladiSight
             addRecordButton.Enabled = false;
             ClearButton.Enabled = false;
             DeleteDataButton.Enabled = false;
+            EditButton.Enabled = false;
+            ViewButton.Enabled = false;
         }
 
         private void InitDGV(List<EntityClassSight> ParsedData)
@@ -60,6 +62,8 @@ namespace VladiSight
                 addRecordButton.Enabled = true;
                 ClearButton.Enabled = true;
                 DeleteDataButton.Enabled = true;
+                ViewButton.Enabled = true;
+                EditButton.Enabled = true;
             }
         }
 
@@ -90,6 +94,8 @@ namespace VladiSight
                 addRecordButton.Enabled = true;
                 ClearButton.Enabled = true;
                 DeleteDataButton.Enabled = true;
+                ViewButton.Enabled = true;
+                EditButton.Enabled = true;
             }
         }
 
@@ -160,6 +166,8 @@ namespace VladiSight
             addRecordButton.Enabled = false;
             ClearButton.Enabled = false;
             DeleteDataButton.Enabled = false;
+            ViewButton.Enabled = false;
+            EditButton.Enabled = false;
         }
 
         private void addRecordButton_Click(object sender, EventArgs e)
@@ -181,17 +189,34 @@ namespace VladiSight
                 addRecordButton.Enabled = false;
                 ClearButton.Enabled = false;
                 DeleteDataButton.Enabled = false;
+                ViewButton.Enabled = false;
+                EditButton.Enabled = false;
                 ParseDataClass.SaveFile(entitys, MainOpenFileDialog.FileName);
             }
         }
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView.RowEnter() >= 0)
+            if (dataGridView.SelectedRows.Count != 0)
             {
-                EntityClassSight entity = dataGridView.Rows[e.RowIndex].DataBoundItem as EntityClassSight;
+                EntityClassSight entity = dataGridView.SelectedRows[0].DataBoundItem as EntityClassSight;
                 AddOrEdit AddOrEditForm = new AddOrEdit(entitys, entity);
                 AddOrEditForm.ShowDialog(this);
+                if (AddOrEdit.EntityClases != null)
+                {
+                    InitDGV(AddOrEdit.EntityClases);
+                }
+            }
+        }
+
+        private void ViewButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count != 0)
+            {
+                EntityClassSight entity = dataGridView.SelectedRows[0].DataBoundItem as EntityClassSight;
+                AddOrEdit AddOrEditForm = new AddOrEdit(entitys, entity, false);
+                AddOrEditForm.ShowDialog(this);
+                AddOrEditForm.Text = "Просмотр";
                 if (AddOrEdit.EntityClases != null)
                 {
                     InitDGV(AddOrEdit.EntityClases);

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VladiSight.Clases;
 
@@ -21,27 +16,66 @@ namespace VladiSight.Forms
         /// </summary>
         /// <param name="entities"> список всех записей</param>
         /// <param name="ParamEntity"> обьект класса сущностей</param>
-        public AddOrEdit(List<EntityClassSight> entities, EntityClassSight ParamEntity = null)
+        public AddOrEdit(List<EntityClassSight> entities, EntityClassSight ParamEntity = null, bool view = true)
         {
             InitializeComponent();
-            if (ParamEntity != null)
+            if ((ParamEntity != null) && view)
             {
                 DelButton.Visible = true;
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
+                Image imgsight = Image.FromFile(entity.Photo);
+                Bitmap bmp = new Bitmap(imgsight, PictureBox.Width, PictureBox.Height);
+                PictureBox.Image = bmp;
+                if (string.IsNullOrEmpty(NewOrEditetClass.Photo))
+                {
+                    AddPictureButton.Text = "Изменить изображение";
+                }
+                this.Text = "Изменение";
                 CheckTextBox();
+            }
+            else if ((ParamEntity != null) && (!view))
+            {
+                DelButton.Visible = false;
+                AddPictureButton.Visible = false;
+                CloseButton.Text = "Назад";
+                this.Text = "Просмотр";
+                entity = ParamEntity;
+                FormInit();
+                EntityClases = entities;
+                Image imgsight = Image.FromFile(entity.Photo);
+                Bitmap bmp = new Bitmap(imgsight, PictureBox.Width, PictureBox.Height);
+                PictureBox.Image = bmp;
+                CheckTextBox();
+                SaveButton.Visible = false;
+                NoVisible();
             }
             else
             {
                 EntityClases = entities;
                 SaveButton.Text = "Создать";
+                this.Text = "Создание";
                 SaveButton.Visible = false;
                 DelButton.Visible = false;
                 dateTimePicker.Value = DateTime.Today;
                 NewOrEditetClass.Create = dateTimePicker.Value;
-                CheckTextBox();
+                //CheckTextBox();
             }
+        }
+
+        private void NoVisible()
+        {
+            NameTextBox.Enabled = false;
+            DiscriptionTextBox.Enabled = false;
+            AuthorTextBox.Enabled = false;
+            AddressTextBox.Enabled = false;
+            dateTimePicker.Enabled = false;
+            BusStopTextBox.Enabled = false;
+            StatusComboBox.Enabled = false;
+            AbusListBox1.Enabled = false;
+            BusListBox1.Enabled = false;
+            TaxiListBox.Enabled = false;
         }
 
         private void FormInit()
@@ -55,7 +89,10 @@ namespace VladiSight.Forms
             BusCheckedInit();
             TaxiCheckedInit();
             BusStopTextBox.Text = entity.BusStop;
-            StatusComboBox.Text = entity.Status;
+            if (entity.Status.Trim() != "")
+            {
+                StatusComboBox.SelectedIndex = StatusValueInit(entity.Status);
+            }
             CheckTextBox();
         }
 
@@ -115,11 +152,11 @@ namespace VladiSight.Forms
         }
         private void CheckTextBox()
         {
-            if ((!string.IsNullOrWhiteSpace(NameTextBox.Text)) && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text)) && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
+            if ((!string.IsNullOrEmpty(NewOrEditetClass.Photo)) && (!string.IsNullOrWhiteSpace(NameTextBox.Text)) && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text)) && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
             {
                 SaveButton.Visible = true;
             }
-            if((string.IsNullOrWhiteSpace(NameTextBox.Text)) && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text)) && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
+            if((string.IsNullOrEmpty(NewOrEditetClass.Photo)) && (string.IsNullOrWhiteSpace(NameTextBox.Text)) && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text)) && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
             {
                 SaveButton.Visible = false;
             }
@@ -184,6 +221,20 @@ namespace VladiSight.Forms
             }
         }
         
+        private int StatusValueInit(string status)
+        {
+            int i = 0;
+            foreach(string item in StatusComboBox.Items)
+            {
+                if (status.Trim() == item)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -i;
+        }
+
         private void AbusCheckedInit()
         {
             string[] check = entity.Abus.Split(' ');
@@ -363,6 +414,24 @@ namespace VladiSight.Forms
                         }
                 }
             }
+        }
+
+        private void AddPictureButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(NewOrEditetClass.Photo))
+            {
+                AddPictureButton.Text = "Изменить изображение";
+            }
+            openFileDialog.Filter = "Файлы изображений|*.png;*.jpg";
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            Image imgsight = Image.FromFile(openFileDialog.FileName);
+            Bitmap bmp = new Bitmap(imgsight, PictureBox.Width, PictureBox.Height);
+            PictureBox.Image = bmp;
+            NewOrEditetClass.Photo = openFileDialog.FileName;
+            CheckTextBox();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 
 namespace VladiSight.Clases
@@ -15,7 +16,7 @@ namespace VladiSight.Clases
         private string _taxi;
         private string _busStop;
         private string _status;
-        private object enetity;
+        private string _photo;
 
         public string Name { get { return _name; } set { _name = value; } }
         public string Description { get { return _description; } set { _description = value; } }
@@ -27,10 +28,12 @@ namespace VladiSight.Clases
         public string Taxi { get { return _taxi; } set { _taxi = value; } }
         public string BusStop { get { return _busStop; } set { _busStop = value; } }
         public string Status { get { return _status; } set { _status = value; } }
+        public string Photo { get { return _photo; } set { _photo = value; } }
 
         /// <summary>
         /// Инициаизация объекта значениями
         /// </summary>
+        /// <param name="Photo">Изображение</param>
         /// <param name="Name">Название достопримечательности</param>
         /// <param name="Description">Описание достопримечательности</param>
         /// <param name="FIO">Автор достопримечтальеонсти</param>
@@ -41,7 +44,7 @@ namespace VladiSight.Clases
         /// <param name="Taxi">Маршрутное такси</param>
         /// <param name="BusStop">Остановка</param>
         /// <param name="Status">Сатус</param>
-        public EntityClassSight(string Name, string Description, string FIO, string Adres, DateTime Create, string Abus = "", string Bus = "", string Taxi = "", string BusStop = "", string Status = "")
+        public EntityClassSight(string Photo, string Name, string Description, string FIO, string Adres, DateTime Create, string Abus = "", string Bus = "", string Taxi = "", string BusStop = "", string Status = "")
         {
             this.Name = Name;
             this.Description = Description;
@@ -53,6 +56,7 @@ namespace VladiSight.Clases
             this.Taxi = Taxi;
             this.BusStop = BusStop;
             this.Status = Status;
+            this.Photo = Photo;
         }
         /// <summary>
         /// Пустой конструктор, значения устанавливаются по умолчанию
@@ -69,20 +73,20 @@ namespace VladiSight.Clases
             this.Taxi = "";
             this.BusStop = "";
             this.Status = "";
+            this.Photo = "";
         }
 
         public static EntityClassSight ToEntityClass(string s)
         {
-            string[] splitStr = s.Split(',');
-            DateTime date = DateTime.Parse(splitStr[4]);
-            EntityClassSight entity = new EntityClassSight(splitStr[0], splitStr[1], splitStr[2], splitStr[3], date, splitStr[5], splitStr[6], splitStr[7], splitStr[8], splitStr[9]);
+            string[] splitStr = s.Split(';');
+            DateTime date = DateTime.Parse(splitStr[5]);
+            EntityClassSight entity = new EntityClassSight(splitStr[0], splitStr[1], splitStr[2], splitStr[3], splitStr[4], date, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
             return entity;
         }
 
         public override string ToString()
         {
-            string entity = "";
-            entity = Name + "," + Description + "," + FIO + "," + Address + "," + Create.ToString("dd.MM.yyyy") + "," + Abus + "," + Bus + "," + Taxi + "," + BusStop + "," + Status;
+            string entity = Photo + ";" + Name + ";" + Description + ";" + FIO + ";" + Address + ";" + Create.ToString("dd.MM.yyyy") + ";" + Abus + ";" + Bus + ";" + Taxi + ";" + BusStop + ";" + Status;
             return entity;
         }
 

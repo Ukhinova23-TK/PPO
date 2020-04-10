@@ -50,14 +50,14 @@
             this.ClearButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.DeleteDataButton = new System.Windows.Forms.ToolStripButton();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.MainOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.ViewButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.EditButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.MainOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MainToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -247,6 +247,43 @@
             this.DeleteDataButton.Text = "Удалить данные";
             this.DeleteDataButton.Click += new System.EventHandler(this.DeleteDataButton_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ViewButton
+            // 
+            this.ViewButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(156)))), ((int)(((byte)(97)))));
+            this.ViewButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ViewButton.Image = ((System.Drawing.Image)(resources.GetObject("ViewButton.Image")));
+            this.ViewButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ViewButton.Name = "ViewButton";
+            this.ViewButton.Size = new System.Drawing.Size(78, 22);
+            this.ViewButton.Text = "Посмотреть";
+            this.ViewButton.Click += new System.EventHandler(this.ViewButton_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // EditButton
+            // 
+            this.EditButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(142)))), ((int)(((byte)(84)))));
+            this.EditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
+            this.EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(65, 22);
+            this.EditButton.Text = "Изменить";
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
             // dataGridView
             // 
             this.dataGridView.AllowUserToAddRows = false;
@@ -270,42 +307,6 @@
             // 
             this.saveFileDialog.DefaultExt = "*.txt";
             this.saveFileDialog.Filter = "txt-files|*.txt";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // ViewButton
-            // 
-            this.ViewButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(156)))), ((int)(((byte)(97)))));
-            this.ViewButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ViewButton.Image = ((System.Drawing.Image)(resources.GetObject("ViewButton.Image")));
-            this.ViewButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ViewButton.Name = "ViewButton";
-            this.ViewButton.Size = new System.Drawing.Size(78, 22);
-            this.ViewButton.Text = "Посмотреть";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
-            // 
-            // EditButton
-            // 
-            this.EditButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(142)))), ((int)(((byte)(84)))));
-            this.EditButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
-            this.EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(65, 22);
-            this.EditButton.Text = "Изменить";
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
             // MainForm
             // 
