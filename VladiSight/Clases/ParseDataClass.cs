@@ -20,7 +20,8 @@ namespace VladiSight.Clases
             {
                 if (!string.IsNullOrWhiteSpace(str))
                 {
-                    string[] entity = str.Split(';');
+                    string[] separator = { "<split>" };
+                    string[] entity = str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                     DateTime date = DateTime.Parse(entity[5]);
                     ParsedData.Add(new EntityClassSight(entity[0], entity[1], entity[2], entity[3], entity[4], date, entity[6], entity[7], entity[8], entity[9], entity[10]));
                 }

@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VladiSight.Clases;
 using VladiSight.Forms;
@@ -29,7 +25,8 @@ namespace VladiSight
         private void InitDGV(List<EntityClassSight> ParsedData)
         {
             dataGridView.DataSource = null;
-            dataGridView.DataSource = ParsedData;
+            dataGridView.DataSource = ParsedData.GetRange(0, ParsedData.Count);
+            //dataGridView.DataSource = ParsedData;
             dataGridView.Columns[0].Width = 100;
             dataGridView.Columns[0].HeaderText = "Название";
             dataGridView.Columns[1].Width = 150;

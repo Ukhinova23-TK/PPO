@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-
 
 namespace VladiSight.Clases
 {
@@ -78,7 +76,8 @@ namespace VladiSight.Clases
 
         public static EntityClassSight ToEntityClass(string s)
         {
-            string[] splitStr = s.Split(';');
+            string[] separator = { "<split>" };
+            string[] splitStr = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             DateTime date = DateTime.Parse(splitStr[5]);
             EntityClassSight entity = new EntityClassSight(splitStr[0], splitStr[1], splitStr[2], splitStr[3], splitStr[4], date, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
             return entity;
@@ -86,7 +85,8 @@ namespace VladiSight.Clases
 
         public override string ToString()
         {
-            string entity = Photo + ";" + Name + ";" + Description + ";" + FIO + ";" + Address + ";" + Create.ToString("dd.MM.yyyy") + ";" + Abus + ";" + Bus + ";" + Taxi + ";" + BusStop + ";" + Status;
+            string separator = "<split>";
+            string entity = Photo + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create.ToString("dd.MM.yyyy") + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status;
             return entity;
         }
 
