@@ -25,13 +25,10 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = Image.FromFile(entity.Photo);
-                Bitmap bmp = new Bitmap(imgsight, PictureBox.Width, PictureBox.Height);
-                PictureBox.Image = bmp;
-                if (string.IsNullOrEmpty(NewOrEditetClass.Photo))
-                {
-                    AddPictureButton.Text = "Изменить изображение";
-                }
+                Image imgsight = entity.Photo;
+                PictureBox.Image = imgsight;
+                PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                AddPictureButton.Text = "Изменить изображение";
                 this.Text = "Изменение";
                 CheckTextBox();
             }
@@ -44,9 +41,9 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = Image.FromFile(entity.Photo);
-                Bitmap bmp = new Bitmap(imgsight, PictureBox.Width, PictureBox.Height);
-                PictureBox.Image = bmp;
+                Image imgsight = entity.Photo;
+                PictureBox.Image = imgsight;
+                PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 CheckTextBox();
                 SaveButton.Visible = false;
                 NoVisible();
@@ -152,11 +149,15 @@ namespace VladiSight.Forms
         }
         private void CheckTextBox()
         {
-            if ((!string.IsNullOrEmpty(NewOrEditetClass.Photo)) && (!string.IsNullOrWhiteSpace(NameTextBox.Text)) && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text)) && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
+            if ((NewOrEditetClass.Photo != null) && (!string.IsNullOrWhiteSpace(NameTextBox.Text))
+                            && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
+                            && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
             {
                 SaveButton.Visible = true;
             }
-            if((string.IsNullOrEmpty(NewOrEditetClass.Photo)) && (string.IsNullOrWhiteSpace(NameTextBox.Text)) && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text)) && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
+            if ((NewOrEditetClass.Photo != null) && (string.IsNullOrWhiteSpace(NameTextBox.Text))
+                            && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text))
+                            && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
             {
                 SaveButton.Visible = false;
             }
@@ -418,7 +419,7 @@ namespace VladiSight.Forms
 
         private void AddPictureButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NewOrEditetClass.Photo))
+            if (NewOrEditetClass.Photo != null)
             {
                 AddPictureButton.Text = "Изменить изображение";
             }
@@ -428,9 +429,9 @@ namespace VladiSight.Forms
                 return;
             }
             Image imgsight = Image.FromFile(openFileDialog.FileName);
-            Bitmap bmp = new Bitmap(imgsight, PictureBox.Width, PictureBox.Height);
-            PictureBox.Image = bmp;
-            NewOrEditetClass.Photo = openFileDialog.FileName;
+            PictureBox.Image = imgsight;
+            PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            NewOrEditetClass.Photo = imgsight;
             CheckTextBox();
         }
     }

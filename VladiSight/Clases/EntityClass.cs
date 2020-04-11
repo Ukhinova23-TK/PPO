@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 
 namespace VladiSight.Clases
 {
@@ -14,7 +16,7 @@ namespace VladiSight.Clases
         private string _taxi;
         private string _busStop;
         private string _status;
-        private string _photo;
+        private Image _photo;
 
         public string Name { get { return _name; } set { _name = value; } }
         public string Description { get { return _description; } set { _description = value; } }
@@ -26,7 +28,7 @@ namespace VladiSight.Clases
         public string Taxi { get { return _taxi; } set { _taxi = value; } }
         public string BusStop { get { return _busStop; } set { _busStop = value; } }
         public string Status { get { return _status; } set { _status = value; } }
-        public string Photo { get { return _photo; } set { _photo = value; } }
+        public Image Photo { get { return _photo; } set { _photo = value; } }
 
         /// <summary>
         /// Инициаизация объекта значениями
@@ -42,7 +44,7 @@ namespace VladiSight.Clases
         /// <param name="Taxi">Маршрутное такси</param>
         /// <param name="BusStop">Остановка</param>
         /// <param name="Status">Сатус</param>
-        public EntityClassSight(string Photo, string Name, string Description, string FIO, string Adres, DateTime Create, string Abus = "", string Bus = "", string Taxi = "", string BusStop = "", string Status = "")
+        public EntityClassSight(Image Photo, string Name, string Description, string FIO, string Adres, DateTime Create, string Abus = "", string Bus = "", string Taxi = "", string BusStop = "", string Status = "")
         {
             this.Name = Name;
             this.Description = Description;
@@ -71,7 +73,7 @@ namespace VladiSight.Clases
             this.Taxi = "";
             this.BusStop = "";
             this.Status = "";
-            this.Photo = "";
+            this.Photo = null;
         }
 
         public static EntityClassSight ToEntityClass(string s)
@@ -79,14 +81,21 @@ namespace VladiSight.Clases
             string[] separator = { "<split>" };
             string[] splitStr = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
             DateTime date = DateTime.Parse(splitStr[5]);
-            EntityClassSight entity = new EntityClassSight(splitStr[0], splitStr[1], splitStr[2], splitStr[3], splitStr[4], date, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
+            var ms = new MemoryStream();
+            StreamWriter sw = new StreamWriter(ms);
+            sw.WriteLine(splitStr[0]);
+            var img = Image.FromStream(ms);
+            EntityClassSight entity = new EntityClassSight(img, splitStr[1], splitStr[2], splitStr[3], splitStr[4], date, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
             return entity;
         }
 
         public override string ToString()
         {
             string separator = "<split>";
-            string entity = Photo + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create.ToString("dd.MM.yyyy") + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status;
+            var ms = new MemoryStream();
+            Photo.Save(ms, Photo.RawFormat);
+            var imgst = Convert.ToBase64String(ms.ToArray());
+            string entity = imgst + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create.ToString("dd.MM.yyyy") + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
             return entity;
         }
 

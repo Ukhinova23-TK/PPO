@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 
 
@@ -23,7 +24,10 @@ namespace VladiSight.Clases
                     string[] separator = { "<split>" };
                     string[] entity = str.Split(separator, StringSplitOptions.RemoveEmptyEntries);
                     DateTime date = DateTime.Parse(entity[5]);
-                    ParsedData.Add(new EntityClassSight(entity[0], entity[1], entity[2], entity[3], entity[4], date, entity[6], entity[7], entity[8], entity[9], entity[10]));
+                    var bytes = Convert.FromBase64String(entity[0]);
+                    var ms = new MemoryStream(bytes);
+                    var bmp = Image.FromStream(ms);
+                    ParsedData.Add(new EntityClassSight(bmp, entity[1], entity[2], entity[3], entity[4], date, entity[6], entity[7], entity[8], entity[9], entity[10]));
                 }
             }
             return ParsedData;
