@@ -64,6 +64,10 @@
             // 
             // MainToolStrip
             // 
+            this.MainToolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileDropDownMenu,
@@ -83,7 +87,7 @@
             this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.MainToolStrip.Name = "MainToolStrip";
             this.MainToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.MainToolStrip.Size = new System.Drawing.Size(1051, 25);
+            this.MainToolStrip.Size = new System.Drawing.Size(711, 25);
             this.MainToolStrip.TabIndex = 0;
             this.MainToolStrip.Text = "toolStrip1";
             // 
@@ -148,7 +152,7 @@
             this.nameFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nameFilterTextBox});
             this.nameFilter.Name = "nameFilter";
-            this.nameFilter.Size = new System.Drawing.Size(178, 22);
+            this.nameFilter.Size = new System.Drawing.Size(180, 22);
             this.nameFilter.Text = "Название";
             // 
             // nameFilterTextBox
@@ -162,7 +166,7 @@
             this.authorFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.authorFilterTextBox});
             this.authorFilter.Name = "authorFilter";
-            this.authorFilter.Size = new System.Drawing.Size(178, 22);
+            this.authorFilter.Size = new System.Drawing.Size(180, 22);
             this.authorFilter.Text = "Автор";
             // 
             // authorFilterTextBox
@@ -176,7 +180,7 @@
             this.addresFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addresFilterTextBox});
             this.addresFilter.Name = "addresFilter";
-            this.addresFilter.Size = new System.Drawing.Size(178, 22);
+            this.addresFilter.Size = new System.Drawing.Size(180, 22);
             this.addresFilter.Text = "Место нахождения";
             // 
             // addresFilterTextBox
@@ -190,7 +194,7 @@
             this.StatusFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusFilterTextBox});
             this.StatusFilter.Name = "StatusFilter";
-            this.StatusFilter.Size = new System.Drawing.Size(178, 22);
+            this.StatusFilter.Size = new System.Drawing.Size(180, 22);
             this.StatusFilter.Text = "Статус";
             // 
             // StatusFilterTextBox
@@ -288,6 +292,9 @@
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.BackgroundColor = System.Drawing.Color.Tan;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(5, 29);
@@ -318,6 +325,7 @@
             this.MaximumSize = new System.Drawing.Size(2000, 506);
             this.MinimumSize = new System.Drawing.Size(1064, 506);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Список достопримечательностей города Владимира";
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();

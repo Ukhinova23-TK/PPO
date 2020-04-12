@@ -39,7 +39,6 @@
             this.CreationDateLabel = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.DelButton = new System.Windows.Forms.Button();
             this.AbusLable = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,7 +53,9 @@
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.AddPictureButton = new System.Windows.Forms.Button();
+            this.YearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // NameTextBox
@@ -136,15 +137,15 @@
             this.CreationDateLabel.AutoSize = true;
             this.CreationDateLabel.Location = new System.Drawing.Point(274, 230);
             this.CreationDateLabel.Name = "CreationDateLabel";
-            this.CreationDateLabel.Size = new System.Drawing.Size(84, 13);
+            this.CreationDateLabel.Size = new System.Drawing.Size(80, 13);
             this.CreationDateLabel.TabIndex = 9;
-            this.CreationDateLabel.Text = "Дата создания";
+            this.CreationDateLabel.Text = "Год создания*";
             // 
             // SaveButton
             // 
             this.SaveButton.BackColor = System.Drawing.Color.PaleGreen;
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SaveButton.Location = new System.Drawing.Point(727, 317);
+            this.SaveButton.Location = new System.Drawing.Point(420, 361);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 12;
@@ -154,7 +155,7 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(727, 346);
+            this.CloseButton.Location = new System.Drawing.Point(631, 361);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(75, 23);
             this.CloseButton.TabIndex = 13;
@@ -162,22 +163,12 @@
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimePicker.Location = new System.Drawing.Point(385, 230);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(249, 20);
-            this.dateTimePicker.TabIndex = 14;
-            this.dateTimePicker.Value = new System.DateTime(2020, 4, 8, 0, 0, 0, 0);
-            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
-            // 
             // DelButton
             // 
             this.DelButton.BackColor = System.Drawing.Color.Salmon;
             this.DelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DelButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DelButton.Location = new System.Drawing.Point(727, 288);
+            this.DelButton.Location = new System.Drawing.Point(529, 361);
             this.DelButton.Name = "DelButton";
             this.DelButton.Size = new System.Drawing.Size(75, 23);
             this.DelButton.TabIndex = 15;
@@ -188,7 +179,7 @@
             // AbusLable
             // 
             this.AbusLable.AutoSize = true;
-            this.AbusLable.Location = new System.Drawing.Point(647, 34);
+            this.AbusLable.Location = new System.Drawing.Point(736, 34);
             this.AbusLable.Name = "AbusLable";
             this.AbusLable.Size = new System.Drawing.Size(59, 13);
             this.AbusLable.TabIndex = 16;
@@ -197,7 +188,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(724, 34);
+            this.label1.Location = new System.Drawing.Point(640, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 17;
@@ -206,7 +197,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(724, 205);
+            this.label2.Location = new System.Drawing.Point(611, 237);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 18;
@@ -237,10 +228,11 @@
             "27",
             "28",
             "29с",
-            "32"});
-            this.AbusListBox1.Location = new System.Drawing.Point(650, 65);
+            "32",
+            "нет"});
+            this.AbusListBox1.Location = new System.Drawing.Point(739, 65);
             this.AbusListBox1.Name = "AbusListBox1";
-            this.AbusListBox1.Size = new System.Drawing.Size(56, 304);
+            this.AbusListBox1.Size = new System.Drawing.Size(56, 319);
             this.AbusListBox1.TabIndex = 19;
             // 
             // BusListBox1
@@ -256,10 +248,11 @@
             "8",
             "10",
             "11",
-            "12"});
-            this.BusListBox1.Location = new System.Drawing.Point(738, 65);
+            "12",
+            "нет"});
+            this.BusListBox1.Location = new System.Drawing.Point(666, 65);
             this.BusListBox1.Name = "BusListBox1";
-            this.BusListBox1.Size = new System.Drawing.Size(52, 124);
+            this.BusListBox1.Size = new System.Drawing.Size(52, 139);
             this.BusListBox1.TabIndex = 20;
             // 
             // TaxiListBox
@@ -269,10 +262,11 @@
             this.TaxiListBox.FormattingEnabled = true;
             this.TaxiListBox.Items.AddRange(new object[] {
             "5",
-            "36"});
-            this.TaxiListBox.Location = new System.Drawing.Point(738, 230);
+            "36",
+            "нет"});
+            this.TaxiListBox.Location = new System.Drawing.Point(669, 273);
             this.TaxiListBox.Name = "TaxiListBox";
-            this.TaxiListBox.Size = new System.Drawing.Size(49, 34);
+            this.TaxiListBox.Size = new System.Drawing.Size(49, 49);
             this.TaxiListBox.TabIndex = 21;
             // 
             // BusStopLable
@@ -280,18 +274,18 @@
             this.BusStopLable.AutoSize = true;
             this.BusStopLable.Location = new System.Drawing.Point(274, 268);
             this.BusStopLable.Name = "BusStopLable";
-            this.BusStopLable.Size = new System.Drawing.Size(62, 13);
+            this.BusStopLable.Size = new System.Drawing.Size(66, 13);
             this.BusStopLable.TabIndex = 22;
-            this.BusStopLable.Text = "Остановка";
+            this.BusStopLable.Text = "Остановка*";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(274, 304);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 23;
-            this.label3.Text = "Статус";
+            this.label3.Text = "Статус*";
             // 
             // BusStopTextBox
             // 
@@ -319,6 +313,7 @@
             // 
             // PictureBox
             // 
+            this.PictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PictureBox.Location = new System.Drawing.Point(12, 28);
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Size = new System.Drawing.Size(232, 209);
@@ -333,7 +328,7 @@
             // 
             this.AddPictureButton.BackColor = System.Drawing.Color.Khaki;
             this.AddPictureButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.AddPictureButton.Location = new System.Drawing.Point(55, 243);
+            this.AddPictureButton.Location = new System.Drawing.Point(48, 260);
             this.AddPictureButton.Name = "AddPictureButton";
             this.AddPictureButton.Size = new System.Drawing.Size(150, 21);
             this.AddPictureButton.TabIndex = 27;
@@ -341,12 +336,27 @@
             this.AddPictureButton.UseVisualStyleBackColor = false;
             this.AddPictureButton.Click += new System.EventHandler(this.AddPictureButton_Click);
             // 
+            // YearNumericUpDown
+            // 
+            this.YearNumericUpDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.YearNumericUpDown.Location = new System.Drawing.Point(385, 230);
+            this.YearNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.YearNumericUpDown.Name = "YearNumericUpDown";
+            this.YearNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.YearNumericUpDown.TabIndex = 28;
+            this.YearNumericUpDown.ValueChanged += new System.EventHandler(this.YearNumericUpDown_ValueChanged);
+            // 
             // AddOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(835, 377);
+            this.ClientSize = new System.Drawing.Size(812, 399);
+            this.Controls.Add(this.YearNumericUpDown);
             this.Controls.Add(this.AddPictureButton);
             this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.StatusComboBox);
@@ -360,7 +370,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AbusLable);
             this.Controls.Add(this.DelButton);
-            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.CreationDateLabel);
@@ -374,8 +383,10 @@
             this.Controls.Add(this.NameTextBox);
             this.MinimumSize = new System.Drawing.Size(283, 256);
             this.Name = "AddOrEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создать или Изменить";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,7 +406,6 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Button DelButton;
-        protected System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label AbusLable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -409,5 +419,6 @@
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button AddPictureButton;
+        private System.Windows.Forms.NumericUpDown YearNumericUpDown;
     }
 }
