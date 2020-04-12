@@ -150,14 +150,14 @@ namespace VladiSight.Forms
         private void CheckTextBox()
         {
             if ((NewOrEditetClass.Photo != null) && (!string.IsNullOrWhiteSpace(NameTextBox.Text))
-                            && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
-                            && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
+                && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
+                && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
             {
                 SaveButton.Visible = true;
             }
             if ((NewOrEditetClass.Photo != null) && (string.IsNullOrWhiteSpace(NameTextBox.Text))
-                            && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text))
-                            && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
+                && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text))
+                && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)))
             {
                 SaveButton.Visible = false;
             }
@@ -174,7 +174,7 @@ namespace VladiSight.Forms
                 SaveAbusListBox();
                 SaveBusListBox();
                 SaveTaxiListBox();
-                foreach(EntityClassSight item in EntityClases)
+                foreach (EntityClassSight item in EntityClases)
                 {
                     if (NewOrEditetClass.Equally(item))
                     {
@@ -216,16 +216,16 @@ namespace VladiSight.Forms
         }
         private void SaveTaxiListBox()
         {
-            foreach(string itemCheck in TaxiListBox.CheckedItems)
+            foreach (string itemCheck in TaxiListBox.CheckedItems)
             {
                 NewOrEditetClass.Taxi += itemCheck + " ";
             }
         }
-        
+
         private int StatusValueInit(string status)
         {
             int i = 0;
-            foreach(string item in StatusComboBox.Items)
+            foreach (string item in StatusComboBox.Items)
             {
                 if (status.Trim() == item)
                 {
@@ -349,7 +349,7 @@ namespace VladiSight.Forms
         private void TaxiCheckedInit()
         {
             string[] check = entity.Taxi.Split(' ');
-            foreach(string item in check)
+            foreach (string item in check)
             {
                 switch (item)
                 {

@@ -12,6 +12,7 @@ namespace VladiSight
     public partial class MainForm : Form
     {
         static List<EntityClassSight> entitys;
+        static string path = "";
         public MainForm()
         {
             InitializeComponent();
@@ -26,7 +27,6 @@ namespace VladiSight
         {
             dataGridView.DataSource = null;
             dataGridView.DataSource = ParsedData.GetRange(0, ParsedData.Count);
-            //dataGridView.DataSource = ParsedData;
             dataGridView.Columns[0].Width = 100;
             dataGridView.Columns[0].HeaderText = "Название";
             dataGridView.Columns[1].Width = 150;
@@ -47,6 +47,7 @@ namespace VladiSight
             dataGridView.Columns[8].HeaderText = "Остановка";
             dataGridView.Columns[9].Width = 100;
             dataGridView.Columns[9].HeaderText = "Статус";
+            dataGridView.Columns[10].Visible = false;
             entitys = ParsedData;
         }
 
@@ -62,6 +63,8 @@ namespace VladiSight
                 ViewButton.Enabled = true;
                 EditButton.Enabled = true;
             }
+            path = MainOpenFileDialog.FileName;
+
         }
 
         private void dataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -79,7 +82,7 @@ namespace VladiSight
         }
         private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ParseDataClass.SaveFile(entitys, MainOpenFileDialog.FileName);
+            ParseDataClass.SaveFile(entitys, path);
         }
         private void createFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -94,6 +97,7 @@ namespace VladiSight
                 ViewButton.Enabled = true;
                 EditButton.Enabled = true;
             }
+            path = saveFileDialog.FileName;
         }
 
         private void nameFilterTextBox_TextChanged(object sender, EventArgs e)
