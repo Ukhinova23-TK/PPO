@@ -95,11 +95,13 @@ namespace VladiSight.Clases
         public override string ToString()
         {
             string separator = "<split>";
-            var ms = new MemoryStream();
-            Photo.Save(ms, Photo.RawFormat);
-            var imgst = Convert.ToBase64String(ms.ToArray());
-            string entity = imgst + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
-            return entity;
+            using (var ms = new MemoryStream())
+            {
+                Photo.Save(ms, Photo.RawFormat);
+                var imgst = Convert.ToBase64String(ms.ToArray());
+                string entity = imgst + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
+                return entity;
+            }
         }
 
         public bool Equally(EntityClassSight entity)

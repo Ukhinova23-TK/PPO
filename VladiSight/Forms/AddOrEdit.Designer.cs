@@ -233,7 +233,6 @@
             this.AbusListBox1.Name = "AbusListBox1";
             this.AbusListBox1.Size = new System.Drawing.Size(56, 304);
             this.AbusListBox1.TabIndex = 19;
-            this.AbusListBox1.Click += new System.EventHandler(this.AbusListBox1_Click);
             // 
             // BusListBox1
             // 
@@ -253,7 +252,6 @@
             this.BusListBox1.Name = "BusListBox1";
             this.BusListBox1.Size = new System.Drawing.Size(52, 124);
             this.BusListBox1.TabIndex = 20;
-            this.BusListBox1.Click += new System.EventHandler(this.BusListBox1_Click);
             // 
             // TaxiListBox
             // 
@@ -267,7 +265,6 @@
             this.TaxiListBox.Name = "TaxiListBox";
             this.TaxiListBox.Size = new System.Drawing.Size(49, 34);
             this.TaxiListBox.TabIndex = 21;
-            this.TaxiListBox.Click += new System.EventHandler(this.TaxiListBox_Click);
             // 
             // BusStopLable
             // 
