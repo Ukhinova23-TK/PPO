@@ -25,7 +25,7 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = entity.Photo;
+                Image imgsight = Image.FromFile(entity.Photo);
                 PictureBox.Image = imgsight;
                 PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 AddPictureButton.Text = "Изменить изображение";
@@ -41,7 +41,7 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = entity.Photo;
+                Image imgsight = Image.FromFile(entity.Photo);
                 PictureBox.Image = imgsight;
                 PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 CheckTextBox();
@@ -222,6 +222,11 @@ namespace VladiSight.Forms
             {
                 foreach (string itemCheck in AbusListBox1.CheckedItems)
                 {
+                    if (itemCheck == "нет")
+                    {
+                        NewOrEditetClass.Abus = "нет";
+                        break;
+                    }
                     NewOrEditetClass.Abus += itemCheck + " ";
                 }
             }
@@ -234,6 +239,11 @@ namespace VladiSight.Forms
             {
                 foreach (string itemCheck in BusListBox1.CheckedItems)
                 {
+                    if (itemCheck == "нет")
+                    {
+                        NewOrEditetClass.Bus = "нет";
+                        break;
+                    }
                     NewOrEditetClass.Bus += itemCheck + " ";
                 }
             }
@@ -245,6 +255,11 @@ namespace VladiSight.Forms
             {
                 foreach (string itemCheck in TaxiListBox.CheckedItems)
                 {
+                    if (itemCheck == "нет")
+                    {
+                        NewOrEditetClass.Taxi = "нет";
+                        break;
+                    }
                     NewOrEditetClass.Taxi += itemCheck + " ";
                 }
             }
@@ -271,6 +286,15 @@ namespace VladiSight.Forms
             {
                 switch (item)
                 {
+                    case "нет":
+                        {
+                            for(int i=1; i<AbusListBox1.Items.Count-1; i++)
+                            {
+                                AbusListBox1.SetItemChecked(i, false);
+                            }
+                            AbusListBox1.SetItemChecked(AbusListBox1.Items.Count, true);
+                            return;
+                        }
                     case "1с":
                         {
                             AbusListBox1.SetItemChecked(0, true);
@@ -381,6 +405,15 @@ namespace VladiSight.Forms
             {
                 switch (item)
                 {
+                    case "нет":
+                        {
+                            for (int i = 1; i < TaxiListBox.Items.Count - 1; i++)
+                            {
+                                TaxiListBox.SetItemChecked(i, false);
+                            }
+                            TaxiListBox.SetItemChecked(TaxiListBox.Items.Count, true);
+                            return;
+                        }
                     case "5":
                         {
                             TaxiListBox.SetItemChecked(0, true);
@@ -401,6 +434,15 @@ namespace VladiSight.Forms
             {
                 switch (item)
                 {
+                    case "нет":
+                        {
+                            for (int i = 1; i < BusListBox1.Items.Count - 1; i++)
+                            {
+                                BusListBox1.SetItemChecked(i, false);
+                            }
+                            BusListBox1.SetItemChecked(BusListBox1.Items.Count, true);
+                            return;
+                        }
                     case "1":
                         {
                             BusListBox1.SetItemChecked(0, true);
@@ -456,7 +498,7 @@ namespace VladiSight.Forms
             Image imgsight = Image.FromFile(openFileDialog.FileName);
             PictureBox.Image = imgsight;
             PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            NewOrEditetClass.Photo = imgsight;
+            NewOrEditetClass.Photo = openFileDialog.FileName;
             AddPictureButton.Text = "Изменить изображение";
             SaveAbusListBox();
             SaveBusListBox();

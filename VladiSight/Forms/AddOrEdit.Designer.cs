@@ -145,7 +145,7 @@
             // 
             this.SaveButton.BackColor = System.Drawing.Color.PaleGreen;
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.SaveButton.Location = new System.Drawing.Point(727, 317);
+            this.SaveButton.Location = new System.Drawing.Point(420, 361);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 12;
@@ -155,7 +155,7 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(727, 346);
+            this.CloseButton.Location = new System.Drawing.Point(631, 361);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(75, 23);
             this.CloseButton.TabIndex = 13;
@@ -168,7 +168,7 @@
             this.DelButton.BackColor = System.Drawing.Color.Salmon;
             this.DelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DelButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DelButton.Location = new System.Drawing.Point(727, 288);
+            this.DelButton.Location = new System.Drawing.Point(529, 361);
             this.DelButton.Name = "DelButton";
             this.DelButton.Size = new System.Drawing.Size(75, 23);
             this.DelButton.TabIndex = 15;
@@ -179,7 +179,7 @@
             // AbusLable
             // 
             this.AbusLable.AutoSize = true;
-            this.AbusLable.Location = new System.Drawing.Point(647, 34);
+            this.AbusLable.Location = new System.Drawing.Point(736, 34);
             this.AbusLable.Name = "AbusLable";
             this.AbusLable.Size = new System.Drawing.Size(59, 13);
             this.AbusLable.TabIndex = 16;
@@ -188,7 +188,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(724, 34);
+            this.label1.Location = new System.Drawing.Point(640, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 17;
@@ -197,7 +197,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(724, 205);
+            this.label2.Location = new System.Drawing.Point(611, 237);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 18;
@@ -228,10 +228,11 @@
             "27",
             "28",
             "29с",
-            "32"});
-            this.AbusListBox1.Location = new System.Drawing.Point(650, 65);
+            "32",
+            "нет"});
+            this.AbusListBox1.Location = new System.Drawing.Point(739, 65);
             this.AbusListBox1.Name = "AbusListBox1";
-            this.AbusListBox1.Size = new System.Drawing.Size(56, 304);
+            this.AbusListBox1.Size = new System.Drawing.Size(56, 319);
             this.AbusListBox1.TabIndex = 19;
             // 
             // BusListBox1
@@ -247,10 +248,11 @@
             "8",
             "10",
             "11",
-            "12"});
-            this.BusListBox1.Location = new System.Drawing.Point(738, 65);
+            "12",
+            "нет"});
+            this.BusListBox1.Location = new System.Drawing.Point(666, 65);
             this.BusListBox1.Name = "BusListBox1";
-            this.BusListBox1.Size = new System.Drawing.Size(52, 124);
+            this.BusListBox1.Size = new System.Drawing.Size(52, 139);
             this.BusListBox1.TabIndex = 20;
             // 
             // TaxiListBox
@@ -260,10 +262,11 @@
             this.TaxiListBox.FormattingEnabled = true;
             this.TaxiListBox.Items.AddRange(new object[] {
             "5",
-            "36"});
-            this.TaxiListBox.Location = new System.Drawing.Point(738, 230);
+            "36",
+            "нет"});
+            this.TaxiListBox.Location = new System.Drawing.Point(669, 273);
             this.TaxiListBox.Name = "TaxiListBox";
-            this.TaxiListBox.Size = new System.Drawing.Size(49, 34);
+            this.TaxiListBox.Size = new System.Drawing.Size(49, 49);
             this.TaxiListBox.TabIndex = 21;
             // 
             // BusStopLable
@@ -325,7 +328,7 @@
             // 
             this.AddPictureButton.BackColor = System.Drawing.Color.Khaki;
             this.AddPictureButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.AddPictureButton.Location = new System.Drawing.Point(55, 243);
+            this.AddPictureButton.Location = new System.Drawing.Point(48, 260);
             this.AddPictureButton.Name = "AddPictureButton";
             this.AddPictureButton.Size = new System.Drawing.Size(150, 21);
             this.AddPictureButton.TabIndex = 27;
@@ -352,7 +355,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(835, 377);
+            this.ClientSize = new System.Drawing.Size(812, 399);
             this.Controls.Add(this.YearNumericUpDown);
             this.Controls.Add(this.AddPictureButton);
             this.Controls.Add(this.PictureBox);
