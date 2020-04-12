@@ -24,11 +24,11 @@ namespace VladiSight.Clases
                 if (!string.IsNullOrWhiteSpace(str))
                 {
                     string[] entity = str.Split(new string[] { "<split>" }, StringSplitOptions.RemoveEmptyEntries);
-                    DateTime date = DateTime.Parse(entity[5]);
+                    int year = Convert.ToInt32(entity[5]);
                     var bytes = Convert.FromBase64String(entity[0]);
                     var ms = new MemoryStream(bytes);
                     var bmp = Image.FromStream(ms);
-                    ParsedData.Add(new EntityClassSight(bmp, entity[1], entity[2], entity[3], entity[4], date, entity[6], entity[7], entity[8], entity[9], entity[10]));
+                    ParsedData.Add(new EntityClassSight(bmp, entity[1], entity[2], entity[3], entity[4], year, entity[6], entity[7], entity[8], entity[9], entity[10]));
                     ms.Dispose();
                 }
             }

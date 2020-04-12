@@ -13,7 +13,7 @@ namespace VladiSight.Clases
         private string _description;
         private string _fio;
         private string _adres;
-        private DateTime _create;
+        private int _create;
         private string _abus;
         private string _bus;
         private string _taxi;
@@ -25,7 +25,7 @@ namespace VladiSight.Clases
         public string Description { get { return _description; } set { _description = value; } }
         public string FIO { get { return _fio; } set { _fio = value; } }
         public string Address { get { return _adres; } set { _adres = value; } }
-        public DateTime Create { get { return _create; } set { _create = value; } }
+        public int Create { get { return _create; } set { _create = value; } }
         public string Abus { get { return _abus; } set { _abus = value; } }
         public string Bus { get { return _bus; } set { _bus = value; } }
         public string Taxi { get { return _taxi; } set { _taxi = value; } }
@@ -47,7 +47,7 @@ namespace VladiSight.Clases
         /// <param name="Taxi">Маршрутное такси</param>
         /// <param name="BusStop">Остановка</param>
         /// <param name="Status">Сатус</param>
-        public EntityClassSight(Image Photo, string Name, string Description, string FIO, string Adres, DateTime Create, string Abus = "", string Bus = "", string Taxi = "", string BusStop = "", string Status = "")
+        public EntityClassSight(Image Photo, string Name, string Description, string FIO, string Adres, int Create, string Abus, string Bus, string Taxi, string BusStop, string Status)
         {
             this.Name = Name;
             this.Description = Description;
@@ -70,7 +70,7 @@ namespace VladiSight.Clases
             this.Description = "";
             this.FIO = "";
             this.Address = "";
-            this.Create = DateTime.MinValue;
+            this.Create = 0;
             this.Abus = "";
             this.Bus = "";
             this.Taxi = "";
@@ -83,12 +83,12 @@ namespace VladiSight.Clases
         {
             string[] separator = { "<split>" };
             string[] splitStr = s.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-            DateTime date = DateTime.Parse(splitStr[5]);
+            int year = Convert.ToInt32(splitStr[5]);
             var ms = new MemoryStream();
             StreamWriter sw = new StreamWriter(ms);
             sw.WriteLine(splitStr[0]);
             var img = Image.FromStream(ms);
-            EntityClassSight entity = new EntityClassSight(img, splitStr[1], splitStr[2], splitStr[3], splitStr[4], date, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
+            EntityClassSight entity = new EntityClassSight(img, splitStr[1], splitStr[2], splitStr[3], splitStr[4], year, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
             return entity;
         }
 
@@ -98,7 +98,7 @@ namespace VladiSight.Clases
             var ms = new MemoryStream();
             Photo.Save(ms, Photo.RawFormat);
             var imgst = Convert.ToBase64String(ms.ToArray());
-            string entity = imgst + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create.ToString("dd.MM.yyyy") + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
+            string entity = imgst + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
             return entity;
         }
 

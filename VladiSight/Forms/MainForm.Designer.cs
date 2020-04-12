@@ -318,6 +318,7 @@
             this.MaximumSize = new System.Drawing.Size(2000, 506);
             this.MinimumSize = new System.Drawing.Size(1064, 506);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Список достопримечательностей города Владимира";
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
