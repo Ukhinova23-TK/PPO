@@ -192,7 +192,7 @@ namespace VladiSight
                 DeleteDataButton.Enabled = false;
                 ViewButton.Enabled = false;
                 EditButton.Enabled = false;
-                ParseDataClass.SaveFile(entitys, MainOpenFileDialog.FileName);
+                File.Delete(path);
             }
         }
         private void EditButton_Click(object sender, EventArgs e)

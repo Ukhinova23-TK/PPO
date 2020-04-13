@@ -26,12 +26,11 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = Image.FromFile(entity.Photo);
+                Image imgsight = Image.FromFile(entity.Photo.Trim());
                 PictureBox.Image = imgsight;
                 PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 AddPictureButton.Text = "Изменить изображение";
                 this.Text = "Изменение";
-                CheckTextBox();
             }
             else if ((ParamEntity != null) && (!view))
             {
@@ -45,7 +44,6 @@ namespace VladiSight.Forms
                 Image imgsight = Image.FromFile(entity.Photo);
                 PictureBox.Image = imgsight;
                 PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                CheckTextBox();
                 SaveButton.Visible = false;
                 NoVisible();
             }
@@ -54,7 +52,6 @@ namespace VladiSight.Forms
                 EntityClases = entities;
                 SaveButton.Text = "Создать";
                 this.Text = "Создание";
-                SaveButton.Visible = false;
                 DelButton.Visible = false;
             }
         }
@@ -92,103 +89,59 @@ namespace VladiSight.Forms
             {
                 StatusComboBox.SelectedIndex = StatusValueInit(entity.Status);
             }
-            CheckTextBox();
         }
-        
+
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(NameTextBox.Text))
-            {
-                NewOrEditetClass.Name = NameTextBox.Text;
-            }
-            else { SaveButton.Visible = false; }
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
+            NewOrEditetClass.Name = NameTextBox.Text;
         }
         private void DiscriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text))
-            {
-                NewOrEditetClass.Description = DiscriptionTextBox.Text;
-            }
-            else { SaveButton.Visible = false; }
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
+            NewOrEditetClass.Description = DiscriptionTextBox.Text;
         }
         private void AuthorTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(AuthorTextBox.Text))
-            {
-                NewOrEditetClass.FIO = AuthorTextBox.Text;
-            }
-            else { SaveButton.Visible = false; }
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
+            NewOrEditetClass.FIO = AuthorTextBox.Text;
         }
         private void AddressTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
-            {
-                NewOrEditetClass.Address = AddressTextBox.Text;
-            }
-            else { SaveButton.Visible = false; }
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
+            NewOrEditetClass.Address = AddressTextBox.Text;
         }
         private void StatusComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(StatusComboBox.Text))
-            {
-                NewOrEditetClass.Status = StatusComboBox.Text;
-            }
-            else { SaveButton.Visible = false; }
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
+            NewOrEditetClass.Status = StatusComboBox.Text;
         }
         private void BusStopTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(BusStopTextBox.Text))
-            {
-                NewOrEditetClass.BusStop = BusStopTextBox.Text;
-            }
-            else { SaveButton.Visible = false; }
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
+            NewOrEditetClass.BusStop = BusStopTextBox.Text;
         }
         /// <summary>
         /// Проверка заполнения обязательных полей
         /// </summary>
-        private void CheckTextBox()
+        private bool CheckTextBox()
         {
-            if ((NewOrEditetClass.Photo != null) && (!string.IsNullOrWhiteSpace(NameTextBox.Text))
+            SaveAbusListBox();
+            SaveBusListBox();
+            SaveTaxiListBox();
+            if ((!string.IsNullOrWhiteSpace(NameTextBox.Text))
                 && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
                 && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)) && (!string.IsNullOrEmpty(StatusComboBox.Text)) 
                 && (!string.IsNullOrEmpty(BusStopTextBox.Text)) && (NewOrEditetClass.Create!=0)
                 && (!string.IsNullOrEmpty(NewOrEditetClass.Abus)) && (!string.IsNullOrEmpty(NewOrEditetClass.Bus))
-                && (!string.IsNullOrEmpty(NewOrEditetClass.Taxi)))
+                && (!string.IsNullOrEmpty(NewOrEditetClass.Taxi)) && (!string.IsNullOrEmpty(NewOrEditetClass.Photo))
+                || (!string.IsNullOrWhiteSpace(NameTextBox.Text))
+                && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
+                && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)) && (!string.IsNullOrEmpty(StatusComboBox.Text))
+                && (!string.IsNullOrEmpty(BusStopTextBox.Text)) && (entity.Create != 0)
+                && (!string.IsNullOrEmpty(entity.Abus)) && (!string.IsNullOrEmpty(entity.Bus))
+                && (!string.IsNullOrEmpty(entity.Taxi)) && (!string.IsNullOrEmpty(entity.Photo)))
             {
                 SaveButton.Visible = true;
+                return true;
             }
-            if ((NewOrEditetClass.Photo != null) && (string.IsNullOrWhiteSpace(NameTextBox.Text))
-                && (string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (string.IsNullOrWhiteSpace(AddressTextBox.Text))
-                && (string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)) && (string.IsNullOrEmpty(StatusComboBox.Text)) 
-                && (string.IsNullOrEmpty(BusStopTextBox.Text)) && (NewOrEditetClass.Create==0)
-                && (string.IsNullOrEmpty(NewOrEditetClass.Abus)) && (string.IsNullOrEmpty(NewOrEditetClass.Bus))
-                && (string.IsNullOrEmpty(NewOrEditetClass.Taxi)))
+            else
             {
-                SaveButton.Visible = false;
+                return false;
             }
         }
 
@@ -198,24 +151,31 @@ namespace VladiSight.Forms
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (entity == null)
+            if (CheckTextBox())
             {
-                foreach (EntityClassSight item in EntityClases)
+                if (entity == null)
                 {
-                    if (NewOrEditetClass.Equally(item))
+                    foreach (EntityClassSight item in EntityClases)
                     {
-                        this.Close();
-                        return;
+                        if (NewOrEditetClass.Equally(item))
+                        {
+                            this.Close();
+                            return;
+                        }
                     }
+                    EntityClases.Add(NewOrEditetClass);
                 }
-                EntityClases.Add(NewOrEditetClass);
+                else
+                {
+                    int id = EntityClases.IndexOf(entity);
+                    EntityClases[id] = NewOrEditetClass;
+                }
+                this.Close();
             }
             else
             {
-                int id = EntityClases.IndexOf(entity);
-                EntityClases[id] = NewOrEditetClass;
+                MessageBox.Show("Не все обязательные поля заполнены! \nПроверьте введенные данные.");
             }
-            this.Close();
         }
         private void DelButton_Click(object sender, EventArgs e)
         {
@@ -225,8 +185,9 @@ namespace VladiSight.Forms
         /// <summary>
         /// Запись выбранных полей автобусов в строку
         /// </summary>
-        private void SaveAbusListBox()
+        private bool SaveAbusListBox()
         {
+
             NewOrEditetClass.Abus = "";
             if (AbusListBox1.CheckedItems.Count > 0)
             {
@@ -239,13 +200,17 @@ namespace VladiSight.Forms
                     }
                     NewOrEditetClass.Abus += itemCheck + " ";
                 }
+                return true;
             }
-            
+            else
+            {
+                return false;
+            }
         }
         /// <summary>
         /// Запись выбранных полей троллейбусов в строку
         /// </summary>
-        private void SaveBusListBox()
+        private bool SaveBusListBox()
         {
             NewOrEditetClass.Bus = "";
             if (BusListBox1.CheckedItems.Count > 0)
@@ -259,12 +224,17 @@ namespace VladiSight.Forms
                     }
                     NewOrEditetClass.Bus += itemCheck + " ";
                 }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         /// <summary>
         /// Запись выбранных полей маршруток в строку
         /// </summary>
-        private void SaveTaxiListBox()
+        private bool SaveTaxiListBox()
         {
             NewOrEditetClass.Taxi = "";
             if (TaxiListBox.CheckedItems.Count > 0)
@@ -278,6 +248,11 @@ namespace VladiSight.Forms
                     }
                     NewOrEditetClass.Taxi += itemCheck + " ";
                 }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         /// <summary>
@@ -310,11 +285,11 @@ namespace VladiSight.Forms
                 {
                     case "нет":
                         {
-                            for(int i=1; i<AbusListBox1.Items.Count-1; i++)
+                            for(int i=0; i<AbusListBox1.Items.Count-1; i++)
                             {
                                 AbusListBox1.SetItemChecked(i, false);
                             }
-                            AbusListBox1.SetItemChecked(AbusListBox1.Items.Count, true);
+                            AbusListBox1.SetItemChecked(AbusListBox1.Items.Count - 1, true);
                             return;
                         }
                     case "1с":
@@ -432,11 +407,11 @@ namespace VladiSight.Forms
                 {
                     case "нет":
                         {
-                            for (int i = 1; i < TaxiListBox.Items.Count - 1; i++)
+                            for (int i = 0; i < TaxiListBox.Items.Count - 1; i++)
                             {
                                 TaxiListBox.SetItemChecked(i, false);
                             }
-                            TaxiListBox.SetItemChecked(TaxiListBox.Items.Count, true);
+                            TaxiListBox.SetItemChecked(TaxiListBox.Items.Count - 1, true);
                             return;
                         }
                     case "5":
@@ -464,11 +439,11 @@ namespace VladiSight.Forms
                 {
                     case "нет":
                         {
-                            for (int i = 1; i < BusListBox1.Items.Count - 1; i++)
+                            for (int i = 0; i < BusListBox1.Items.Count - 1; i++)
                             {
                                 BusListBox1.SetItemChecked(i, false);
                             }
-                            BusListBox1.SetItemChecked(BusListBox1.Items.Count, true);
+                            BusListBox1.SetItemChecked(BusListBox1.Items.Count - 1, true);
                             return;
                         }
                     case "1":
@@ -522,25 +497,16 @@ namespace VladiSight.Forms
             {
                 return;
             }
-            else { SaveButton.Visible = false; }
             Image imgsight = Image.FromFile(openFileDialog.FileName);
             PictureBox.Image = imgsight;
             PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             NewOrEditetClass.Photo = openFileDialog.FileName;
             AddPictureButton.Text = "Изменить изображение";
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
         }
 
         private void YearNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             NewOrEditetClass.Create = Convert.ToInt32(YearNumericUpDown.Value);
-            SaveAbusListBox();
-            SaveBusListBox();
-            SaveTaxiListBox();
-            CheckTextBox();
         }
     }
 }
