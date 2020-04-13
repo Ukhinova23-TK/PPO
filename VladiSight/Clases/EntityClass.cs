@@ -78,7 +78,11 @@ namespace VladiSight.Clases
             this.Status = "";
             this.Photo = "";
         }
-
+        /// <summary>
+        /// Преобразование в класс EntityClassSight
+        /// </summary>
+        /// <param name="s">Строка преобразования строки в класс EntityClassSight</param>
+        /// <returns></returns>
         public static EntityClassSight ToEntityClass(string s)
         {
             string[] splitStr = s.Split(new string[] { "<split>" }, StringSplitOptions.RemoveEmptyEntries);
@@ -86,14 +90,21 @@ namespace VladiSight.Clases
             EntityClassSight entity = new EntityClassSight(splitStr[0], splitStr[1], splitStr[2], splitStr[3], splitStr[4], year, splitStr[6], splitStr[7], splitStr[8], splitStr[9], splitStr[10]);
             return entity;
         }
-
+        /// <summary>
+        /// Переопределение метода ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             string separator = "<split>";
             string entity = Photo + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
             return entity;
         }
-
+        /// <summary>
+        /// Сравнение элементов класса EnttyClassSight
+        /// </summary>
+        /// <param name="entity">Элемент класса EntityClassSight</param>
+        /// <returns></returns>
         public bool Equally(EntityClassSight entity)
         {
             if (entity == null)

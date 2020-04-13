@@ -30,6 +30,11 @@ namespace VladiSight.Clases
             }
             return ParsedData;
         }
+        /// <summary>
+        /// Статический метод для сохранения данных в файл
+        /// </summary>
+        /// <param name="sights">Список элементов класса EntityClassSight</param>
+        /// <param name="path">Путь к файлу сохранения</param>
         public static void SaveFile(List<EntityClassSight> sights, string path)
         {
             if (sights != null && sights.Count >= 0)

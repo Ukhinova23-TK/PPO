@@ -14,8 +14,9 @@ namespace VladiSight.Forms
         /// <summary>
         /// Инициализация окна 
         /// </summary>
-        /// <param name="entities"> список всех записей</param>
-        /// <param name="ParamEntity"> обьект класса сущностей</param>
+        /// <param name="entities">Список всех записей</param>
+        /// <param name="ParamEntity">Обьект класса сущностей</param>
+        /// <param name="view">Доступность только для просмотра</param>
         public AddOrEdit(List<EntityClassSight> entities, EntityClassSight ParamEntity = null, bool view = true)
         {
             InitializeComponent();
@@ -57,7 +58,9 @@ namespace VladiSight.Forms
                 DelButton.Visible = false;
             }
         }
-
+        /// <summary>
+        /// Изменение доступности для нажатия полей формы AddOrEdit
+        /// </summary>
         private void NoVisible()
         {
             NameTextBox.Enabled = false;
@@ -71,7 +74,9 @@ namespace VladiSight.Forms
             BusListBox1.Enabled = false;
             TaxiListBox.Enabled = false;
         }
-
+        /// <summary>
+        /// Заполнение полей формы AddOrEdit
+        /// </summary>
         private void FormInit()
         {
             NameTextBox.Text = entity.Name;
@@ -89,7 +94,7 @@ namespace VladiSight.Forms
             }
             CheckTextBox();
         }
-
+        
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(NameTextBox.Text))
@@ -162,6 +167,9 @@ namespace VladiSight.Forms
             SaveTaxiListBox();
             CheckTextBox();
         }
+        /// <summary>
+        /// Проверка заполнения обязательных полей
+        /// </summary>
         private void CheckTextBox()
         {
             if ((NewOrEditetClass.Photo != null) && (!string.IsNullOrWhiteSpace(NameTextBox.Text))
@@ -214,7 +222,9 @@ namespace VladiSight.Forms
             EntityClases.Remove(entity);
             this.Close();
         }
-
+        /// <summary>
+        /// Запись выбранных полей автобусов в строку
+        /// </summary>
         private void SaveAbusListBox()
         {
             NewOrEditetClass.Abus = "";
@@ -232,6 +242,9 @@ namespace VladiSight.Forms
             }
             
         }
+        /// <summary>
+        /// Запись выбранных полей троллейбусов в строку
+        /// </summary>
         private void SaveBusListBox()
         {
             NewOrEditetClass.Bus = "";
@@ -248,6 +261,9 @@ namespace VladiSight.Forms
                 }
             }
         }
+        /// <summary>
+        /// Запись выбранных полей маршруток в строку
+        /// </summary>
         private void SaveTaxiListBox()
         {
             NewOrEditetClass.Taxi = "";
@@ -264,7 +280,11 @@ namespace VladiSight.Forms
                 }
             }
         }
-
+        /// <summary>
+        /// Заполнение поля "Статус" выбранным ранее значением
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
         private int StatusValueInit(string status)
         {
             int i = 0;
@@ -278,7 +298,9 @@ namespace VladiSight.Forms
             }
             return -i;
         }
-
+        /// <summary>
+        /// Выбор выбранных ранее автобусов
+        /// </summary>
         private void AbusCheckedInit()
         {
             string[] check = entity.Abus.Split(' ');
@@ -398,6 +420,9 @@ namespace VladiSight.Forms
                 }
             }
         }
+        /// <summary>
+        /// Заполнение выбранных ранее маршруток
+        /// </summary>
         private void TaxiCheckedInit()
         {
             string[] check = entity.Taxi.Split(' ');
@@ -427,6 +452,9 @@ namespace VladiSight.Forms
                 }
             }
         }
+        /// <summary>
+        /// Заполнение выбранных ранее троллейбусов
+        /// </summary>
         private void BusCheckedInit()
         {
             string[] check = entity.Bus.Split(' ');

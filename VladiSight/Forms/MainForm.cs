@@ -13,6 +13,9 @@ namespace VladiSight
     {
         static List<EntityClassSight> entitys;
         static string path = "";
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -22,7 +25,10 @@ namespace VladiSight
             EditButton.Enabled = false;
             ViewButton.Enabled = false;
         }
-
+        /// <summary>
+        /// Создание таблицы данных
+        /// </summary>
+        /// <param name="ParsedData"></param>
         private void InitDGV(List<EntityClassSight> ParsedData)
         {
             dataGridView.DataSource = null;
@@ -114,7 +120,6 @@ namespace VladiSight
                 }
             }
         }
-
         private void authorFilterTextBox_TextChanged(object sender, EventArgs e)
         {
             if (dataGridView.DataSource != null)
@@ -129,7 +134,6 @@ namespace VladiSight
                 }
             }
         }
-
         private void addresFilterTextBox_TextChanged(object sender, EventArgs e)
         {
             if (dataGridView.DataSource != null)
@@ -144,7 +148,6 @@ namespace VladiSight
                 }
             }
         }
-
         private void StatusFilterTextBox_TextChanged(object sender, EventArgs e)
         {
             if (dataGridView.DataSource != null)
@@ -159,7 +162,6 @@ namespace VladiSight
                 }
             }
         }
-
         private void ClearButton_Click(object sender, EventArgs e)
         {
             dataGridView.DataSource = null;
@@ -170,7 +172,6 @@ namespace VladiSight
             ViewButton.Enabled = false;
             EditButton.Enabled = false;
         }
-
         private void addRecordButton_Click(object sender, EventArgs e)
         {
             var AddOrEditForm = new AddOrEdit(entitys);
@@ -180,7 +181,6 @@ namespace VladiSight
                 InitDGV(AddOrEdit.EntityClases);
             }
         }
-
         private void DeleteDataButton_Click(object sender, EventArgs e)
         {
             if (entitys != null)
@@ -195,7 +195,6 @@ namespace VladiSight
                 ParseDataClass.SaveFile(entitys, MainOpenFileDialog.FileName);
             }
         }
-
         private void EditButton_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count != 0)
@@ -209,7 +208,6 @@ namespace VladiSight
                 }
             }
         }
-
         private void ViewButton_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count != 0)
