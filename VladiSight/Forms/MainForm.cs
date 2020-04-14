@@ -215,7 +215,6 @@ namespace VladiSight
                 EntityClassSight entity = dataGridView.SelectedRows[0].DataBoundItem as EntityClassSight;
                 AddOrEdit AddOrEditForm = new AddOrEdit(entitys, entity, false);
                 AddOrEditForm.ShowDialog(this);
-                AddOrEditForm.Text = "Просмотр";
                 if (AddOrEdit.EntityClases != null)
                 {
                     InitDGV(AddOrEdit.EntityClases);

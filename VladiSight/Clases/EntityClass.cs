@@ -97,7 +97,10 @@ namespace VladiSight.Clases
         public override string ToString()
         {
             string separator = "<split>";
-            string entity = Photo + separator + Name + separator + Description + separator + FIO + separator + Address + separator + Create + separator + Abus + separator + Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
+            string entity = Photo + separator + Name + separator + 
+                Description + separator + FIO + separator + Address + 
+                separator + Create + separator + Abus + separator + 
+                Bus + separator + Taxi + separator + BusStop + separator + Status + "<br>";
             return entity;
         }
         /// <summary>

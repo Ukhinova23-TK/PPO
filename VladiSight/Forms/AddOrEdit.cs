@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using VladiSight.Clases;
 
@@ -26,9 +27,18 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = Image.FromFile(entity.Photo.Trim());
-                PictureBox.Image = imgsight;
-                PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                if (File.Exists(entity.Photo.Trim()))
+                {
+                    Image imgsight = Image.FromFile(entity.Photo.Trim());
+                    PictureBox.Image = imgsight;
+                    PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    Image imgsight = Image.FromFile("unnamed.png");
+                    PictureBox.Image = imgsight;
+                    PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
                 AddPictureButton.Text = "Изменить изображение";
                 this.Text = "Изменение";
             }
@@ -41,9 +51,18 @@ namespace VladiSight.Forms
                 entity = ParamEntity;
                 FormInit();
                 EntityClases = entities;
-                Image imgsight = Image.FromFile(entity.Photo);
-                PictureBox.Image = imgsight;
-                PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                if (File.Exists(entity.Photo.Trim()))
+                {
+                    Image imgsight = Image.FromFile(entity.Photo.Trim());
+                    PictureBox.Image = imgsight;
+                    PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                else
+                {
+                    Image imgsight = Image.FromFile("unnamed.png");
+                    PictureBox.Image = imgsight;
+                    PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
                 SaveButton.Visible = false;
                 NoVisible();
             }
@@ -84,6 +103,7 @@ namespace VladiSight.Forms
             AbusCheckedInit();
             BusCheckedInit();
             TaxiCheckedInit();
+            NewOrEditetClass.Photo = entity.Photo;
             BusStopTextBox.Text = entity.BusStop;
             if (entity.Status.Trim() != "")
             {
@@ -123,25 +143,39 @@ namespace VladiSight.Forms
             SaveAbusListBox();
             SaveBusListBox();
             SaveTaxiListBox();
-            if ((!string.IsNullOrWhiteSpace(NameTextBox.Text))
-                && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
-                && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)) && (!string.IsNullOrEmpty(StatusComboBox.Text)) 
-                && (!string.IsNullOrEmpty(BusStopTextBox.Text)) && (NewOrEditetClass.Create!=0)
-                && (!string.IsNullOrEmpty(NewOrEditetClass.Abus)) && (!string.IsNullOrEmpty(NewOrEditetClass.Bus))
-                && (!string.IsNullOrEmpty(NewOrEditetClass.Taxi)) && (!string.IsNullOrEmpty(NewOrEditetClass.Photo))
-                || (!string.IsNullOrWhiteSpace(NameTextBox.Text))
+            if (this.Text == "Изменение")
+            {
+                if ((!string.IsNullOrWhiteSpace(NameTextBox.Text))
                 && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
                 && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)) && (!string.IsNullOrEmpty(StatusComboBox.Text))
                 && (!string.IsNullOrEmpty(BusStopTextBox.Text)) && (entity.Create != 0)
                 && (!string.IsNullOrEmpty(entity.Abus)) && (!string.IsNullOrEmpty(entity.Bus))
                 && (!string.IsNullOrEmpty(entity.Taxi)) && (!string.IsNullOrEmpty(entity.Photo)))
-            {
-                SaveButton.Visible = true;
-                return true;
+                {
+                    SaveButton.Visible = true;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                return false;
+                if ((!string.IsNullOrWhiteSpace(NameTextBox.Text))
+                && (!string.IsNullOrWhiteSpace(AuthorTextBox.Text)) && (!string.IsNullOrWhiteSpace(AddressTextBox.Text))
+                && (!string.IsNullOrWhiteSpace(DiscriptionTextBox.Text)) && (!string.IsNullOrEmpty(StatusComboBox.Text))
+                && (!string.IsNullOrEmpty(BusStopTextBox.Text)) && (NewOrEditetClass.Create != 0)
+                && (!string.IsNullOrEmpty(NewOrEditetClass.Abus)) && (!string.IsNullOrEmpty(NewOrEditetClass.Bus))
+                && (!string.IsNullOrEmpty(NewOrEditetClass.Taxi)) && (!string.IsNullOrEmpty(NewOrEditetClass.Photo)))
+                {
+                    SaveButton.Visible = true;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -497,9 +531,18 @@ namespace VladiSight.Forms
             {
                 return;
             }
-            Image imgsight = Image.FromFile(openFileDialog.FileName);
-            PictureBox.Image = imgsight;
-            PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            if (File.Exists(openFileDialog.FileName))
+            {
+                Image imgsight = Image.FromFile(openFileDialog.FileName);
+                PictureBox.Image = imgsight;
+                PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                Image imgsight = Image.FromFile("unnamed.png");
+                PictureBox.Image = imgsight;
+                PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
             NewOrEditetClass.Photo = openFileDialog.FileName;
             AddPictureButton.Text = "Изменить изображение";
         }
